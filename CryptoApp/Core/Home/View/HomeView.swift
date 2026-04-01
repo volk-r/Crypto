@@ -58,7 +58,7 @@ private extension HomeView {
 				.foregroundStyle(Color.theme.accent)
 				// like as .animation(.none, value: showPortfolio)
 				.transaction { transaction in
-					   transaction.animation = nil
+					transaction.animation = nil
 				}
 			Spacer()
 			CircleButtonView(iconName: "chevron.right")
