@@ -5,6 +5,7 @@
 //  Created by Roman Romanov on 31.03.2026.
 //
 
+import Combine
 import Foundation
 
 @Observable
@@ -13,10 +14,18 @@ final class HomeViewModel {
 	var allCoins: [CoinModel] = []
 	var portfolioCoins: [CoinModel] = []
 
+	private let dataService = CoinDataService()
+	private var cancellables: Set<AnyCancellable> = []
+
 	init() {
-		DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-			self.allCoins.append(MockData.instance.coin)
-			self.portfolioCoins.append(MockData.instance.coin)
-		}
+		addSubscribers()
+	}
+
+	func addSubscribers() {
+		dataService.$allCoins
+			.sink { [weak self] returnedCoins in
+				self?.allCoins = returnedCoins
+			}
+			.store(in: &cancellables)
 	}
 }
