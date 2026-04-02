@@ -20,6 +20,11 @@ struct HomeView: View {
 			VStack {
 				headerView
 
+				SearchBarView(searchText: Binding(
+					get: { viewModel.searchText },
+					set: { viewModel.searchText = $0 }
+				))
+
 				columnTitles
 
 				if !showPortfolio {

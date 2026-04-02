@@ -14,6 +14,8 @@ final class HomeViewModel {
 	var allCoins: [CoinModel] = []
 	var portfolioCoins: [CoinModel] = []
 
+	var searchText: String = ""
+
 	private let dataService = CoinDataService()
 	private var cancellables: Set<AnyCancellable> = []
 
