@@ -8,13 +8,12 @@
 import Combine
 import Foundation
 
-@Observable
-final class HomeViewModel {
+final class HomeViewModel: ObservableObject {
 
-	var allCoins: [CoinModel] = []
-	var portfolioCoins: [CoinModel] = []
+	@Published var allCoins: [CoinModel] = []
+	@Published var portfolioCoins: [CoinModel] = []
 
-	var searchText: String = ""
+	@Published var searchText: String = ""
 
 	private let dataService = CoinDataService()
 	private var cancellables: Set<AnyCancellable> = []
@@ -24,10 +23,25 @@ final class HomeViewModel {
 	}
 
 	func addSubscribers() {
-		dataService.$allCoins
+		// update allCoins
+		$searchText
+			.combineLatest(dataService.$allCoins)
+			.debounce(for: .seconds(0.5), scheduler: DispatchQueue.main)
+			.map(filterCoins)
 			.sink { [weak self] returnedCoins in
 				self?.allCoins = returnedCoins
 			}
 			.store(in: &cancellables)
+	}
+
+	private func filterCoins(text: String, coins: [CoinModel]) -> [CoinModel] {
+		guard !text.isEmpty else { return coins }
+
+		let lowercaseText = text.lowercased()
+		return coins.filter { coin in
+			coin.name.lowercased().contains(lowercaseText)
+			|| coin.symbol.lowercased().contains(lowercaseText)
+			|| coin.id.lowercased().contains(lowercaseText)
+		}
 	}
 }

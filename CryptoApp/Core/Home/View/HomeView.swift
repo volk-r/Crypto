@@ -9,7 +9,7 @@ import SwiftUI
 
 struct HomeView: View {
 
-	@Environment(HomeViewModel.self) var viewModel: HomeViewModel
+	@EnvironmentObject var viewModel: HomeViewModel
 	@State private var showPortfolio: Bool = false
 
     var body: some View {
@@ -20,10 +20,7 @@ struct HomeView: View {
 			VStack {
 				headerView
 
-				SearchBarView(searchText: Binding(
-					get: { viewModel.searchText },
-					set: { viewModel.searchText = $0 }
-				))
+				SearchBarView(searchText: $viewModel.searchText)
 
 				columnTitles
 
@@ -119,5 +116,5 @@ private extension HomeView {
 		HomeView()
 			.toolbarVisibility(.hidden)
 	}
-	.environment(MockData.instance.homeVM)
+	.environmentObject(MockData.instance.homeVM)
 }
