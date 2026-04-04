@@ -98,6 +98,18 @@ private extension HomeView {
 				) { length, axis in
 					axis == .horizontal ? length / 3.5 : length
 				}
+
+			Button {
+				withAnimation(.linear(duration: 2)) {
+					viewModel.reloadData()
+				}
+			} label: {
+				Image(systemName: "goforward")
+			}
+			.rotationEffect(
+				Angle(degrees: viewModel.isLoading ? 360 : 0),
+				anchor: .center
+			)
 		}
 		.font(.caption)
 		.foregroundStyle(Color.theme.secondaryText)
@@ -117,6 +129,7 @@ private extension HomeView {
 				)
 		}
 		.listStyle(.plain)
+		.refreshable { viewModel.reloadData() }
 	}
 }
 
