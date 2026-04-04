@@ -39,22 +39,29 @@ struct PortfolioView: View {
 					}
 				}
 			}
+			.onChange(of: viewModel.searchText) {
+				if viewModel.searchText == "" {
+					removeSelectedCoin()
+				}
+			}
 		}
 	}
 }
+
+// MARK: - Private Methods
 
 private extension PortfolioView {
 
 	var coinLogoList: some View {
 		ScrollView(.horizontal, showsIndicators: false) {
 			LazyHStack(spacing: 10) {
-				ForEach(viewModel.allCoins) { coin in
+				ForEach(viewModel.searchText.isEmpty ? viewModel.portfolioCoins : viewModel.allCoins) { coin in
 					CoinLogoView(coin: coin)
 						.frame(width: 75)
 						.padding(4)
 						.onTapGesture {
 							withAnimation(.easeIn) {
-								selectedCoin = coin
+								updateSelectedCoin(coin: coin)
 							}
 						}
 						.background {
@@ -65,6 +72,17 @@ private extension PortfolioView {
 			}
 			.frame(height: 102)
 			.padding(.leading)
+		}
+	}
+
+	func updateSelectedCoin(coin: CoinModel) {
+		selectedCoin = coin
+
+		if let portfolioCoin = viewModel.portfolioCoins.first(where: { $0.id == coin.id }),
+		   let amount = portfolioCoin.currentHoldings {
+			quantityText = amount.description
+		} else {
+			quantityText = ""
 		}
 	}
 
@@ -122,9 +140,13 @@ private extension PortfolioView {
 	}
 
 	func saveButtonPressed() {
-		guard selectedCoin != nil else { return }
+		guard
+			let coin = selectedCoin,
+			let amount = Double(quantityText)
+		else { return }
 
 		// save to portfolio
+		viewModel.updatePortfolio(coin: coin, amount: amount)
 
 		// show checkmark
 		withAnimation(.easeIn) {
@@ -146,7 +168,6 @@ private extension PortfolioView {
 	func removeSelectedCoin() {
 		selectedCoin = nil
 		viewModel.searchText = ""
-		quantityText = ""
 	}
 }
 

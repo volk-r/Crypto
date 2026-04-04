@@ -10,6 +10,8 @@ import Foundation
 
 final class HomeViewModel: ObservableObject {
 
+	// MARK: - Public Properties
+
 	@Published var statistics: [StatisticModel] = []
 
 	@Published var allCoins: [CoinModel] = []
@@ -17,13 +19,20 @@ final class HomeViewModel: ObservableObject {
 
 	@Published var searchText: String = ""
 
+	// MARK: - Private Properties
+
 	private let coinDataService = CoinDataService()
 	private let marketDataService = MarketDataService()
+	private let portfolioDataService = PortfolioDataService()
 	private var cancellables: Set<AnyCancellable> = []
+
+	// MARK: - init
 
 	init() {
 		addSubscribers()
 	}
+
+	// MARK: - Public Methods
 
 	func addSubscribers() {
 		// update allCoins
@@ -35,6 +44,7 @@ final class HomeViewModel: ObservableObject {
 				self?.allCoins = returnedCoins
 			}
 			.store(in: &cancellables)
+
 		// update marketData
 		marketDataService.$marketData
 			.map(mapGlobalMarkets)
@@ -42,9 +52,35 @@ final class HomeViewModel: ObservableObject {
 				self?.statistics = returnedStats
 			}
 			.store(in: &cancellables)
+
+		// update portfolioCoins
+		$allCoins
+			.combineLatest(portfolioDataService.$savedEntries)
+			.map { (coinModels, portfolioEntities) -> [CoinModel] in
+				coinModels
+					.compactMap { (coin) -> CoinModel? in
+						guard let entity = portfolioEntities.first(where: { $0.coinID == coin.id }) else {
+							return nil
+						}
+						return coin.updateHoldings(amount: entity.amount)
+					}
+			}
+			.sink { [weak self] returnedCoins in
+				self?.portfolioCoins = returnedCoins
+			}
+			.store(in: &cancellables)
 	}
 
-	private func filterCoins(text: String, coins: [CoinModel]) -> [CoinModel] {
+	func updatePortfolio(coin: CoinModel, amount: Double) {
+		portfolioDataService.updatePortfolio(coin: coin, amount: amount)
+	}
+}
+
+// MARK: - Private Methods
+
+private extension HomeViewModel {
+
+	func filterCoins(text: String, coins: [CoinModel]) -> [CoinModel] {
 		guard !text.isEmpty else { return coins }
 
 		let lowercaseText = text.lowercased()
@@ -55,7 +91,7 @@ final class HomeViewModel: ObservableObject {
 		}
 	}
 
-	private func mapGlobalMarkets(marketDataModel: MarketDataModel?) -> [StatisticModel] {
+	func mapGlobalMarkets(marketDataModel: MarketDataModel?) -> [StatisticModel] {
 		var stats: [StatisticModel] = []
 
 		guard let statData = marketDataModel else { return stats }
