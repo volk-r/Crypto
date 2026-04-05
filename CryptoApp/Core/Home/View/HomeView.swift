@@ -86,18 +86,67 @@ private extension HomeView {
 
 	var columnTitles: some View {
 		HStack {
-			Text("Coin")
+			HStack(spacing: 4) {
+				Text("Coin")
+				Image(systemName: "chevron.down")
+					.opacity(
+						[.rank, .rankReversed]
+							.contains(viewModel.sortOption) ? 1 : 0
+					)
+					.rotation3DEffect(
+						Angle.degrees(viewModel.sortOption == .rank ? 0 : 180),
+						axis: (x: 1, y: 0, z: 0)
+					)
+			}
+			.onTapGesture {
+				withAnimation {
+					viewModel.sortOption = viewModel.sortOption == .rank ? .rankReversed : .rank
+				}
+			}
+
 			Spacer()
 
 			if showPortfolio {
-				Text("Holdings")
-			}
-			Text("Price")
-				.containerRelativeFrame(
-					[.horizontal], alignment: .trailing
-				) { length, axis in
-					axis == .horizontal ? length / 3.5 : length
+				HStack(spacing: 4) {
+					Text("Holdings")
+					Image(systemName: "chevron.down")
+						.opacity(
+							[.holdings, .holdingsReversed]
+								.contains(viewModel.sortOption) ? 1 : 0
+						)
+						.rotation3DEffect(
+							Angle.degrees(viewModel.sortOption == .holdings ? 0 : 180),
+							axis: (x: 1, y: 0, z: 0)
+						)
 				}
+				.onTapGesture {
+					withAnimation {
+						viewModel.sortOption = viewModel.sortOption == .holdings ? .holdingsReversed : .holdings
+					}
+				}
+			}
+			HStack(spacing: 4) {
+				Text("Price")
+				Image(systemName: "chevron.down")
+					.opacity(
+						[.price, .priceReversed]
+							.contains(viewModel.sortOption) ? 1 : 0
+					)
+					.rotation3DEffect(
+						Angle.degrees(viewModel.sortOption == .price ? 0 : 180),
+						axis: (x: 1, y: 0, z: 0)
+					)
+			}
+			.containerRelativeFrame(
+				[.horizontal], alignment: .trailing
+			) { length, axis in
+				axis == .horizontal ? length / 3.5 : length
+			}
+			.onTapGesture {
+				withAnimation {
+					viewModel.sortOption = viewModel.sortOption == .price ? .priceReversed : .price
+				}
+			}
 
 			Button {
 				withAnimation(.linear(duration: 2)) {
