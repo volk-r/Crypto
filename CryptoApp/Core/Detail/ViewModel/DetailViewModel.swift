@@ -14,6 +14,10 @@ final class DetailViewModel: ObservableObject {
 
 	@Published var overviewStatistics: [StatisticModel] = []
 	@Published var additionalStatistics: [StatisticModel] = []
+	@Published var coinDescription: String?
+	@Published var websiteURL: String?
+	@Published var redditURL: String?
+
 	@Published var coin: CoinModel
 
 	// MARK: - Private Properties
@@ -42,6 +46,14 @@ private extension DetailViewModel {
 			.sink { [weak self] returnedArrays in
 				self?.overviewStatistics = returnedArrays.overview
 				self?.additionalStatistics = returnedArrays.additional
+			}
+			.store(in: &cancellables)
+
+		coinDetailService.$coinDetails
+			.sink { [weak self] returnedCoinDetails in
+				self?.coinDescription = returnedCoinDetails?.readableDescription
+				self?.websiteURL = returnedCoinDetails?.links?.homepage?.first
+				self?.redditURL = returnedCoinDetails?.links?.subredditURL
 			}
 			.store(in: &cancellables)
 	}
@@ -81,7 +93,10 @@ private extension DetailViewModel {
 		return overviewArray
 	}
 
-	func createAdditionalArray(coinModel: CoinModel ,coinDetailModel: CoinDetailModel?) -> [StatisticModel] {
+	func createAdditionalArray(
+		coinModel: CoinModel,
+		coinDetailModel: CoinDetailModel?
+	) -> [StatisticModel] {
 		let high = coinModel.high24H?.asCurrencyWith6Decimals() ?? "n/a"
 		let highStat = StatisticModel(title: "24h High", value: high)
 
@@ -106,7 +121,7 @@ private extension DetailViewModel {
 		let additionalArray: [StatisticModel] = [
 			highStat, lowStat, priceChangeStat, marketCapChangeStat, blockStat, hashingStat
 		]
-		
+
 		return additionalArray
 	}
 }

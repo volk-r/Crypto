@@ -9,7 +9,7 @@ import Foundation
 
 enum AppContants {
 	static let locale: Locale = Locale(identifier: "en_US") // .current <- default value
-	
+
 	static let currencyCode: String = "usd" // <- change currency
 	static let currencySymbol: String = "$" // <- change currency symbol
 }

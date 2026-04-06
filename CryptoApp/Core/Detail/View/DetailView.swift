@@ -10,6 +10,7 @@ import SwiftUI
 struct DetailView: View {
 
 	@StateObject private var viewModel: DetailViewModel
+	@State private var showFullDescription: Bool = false
 
 	private let column: [GridItem] = [
 		GridItem(.flexible()),
@@ -27,6 +28,7 @@ struct DetailView: View {
 				ChartPickerView(coin: viewModel.coin)
 
 				VStack(spacing: 20) {
+					descriptionSection
 					makeStatistics(
 						title: "Overview",
 						statistics: viewModel.overviewStatistics
@@ -35,6 +37,7 @@ struct DetailView: View {
 						title: "Additional Details",
 						statistics: viewModel.additionalStatistics
 					)
+					websiteSection
 				}
 				.padding()
 			}
@@ -61,6 +64,49 @@ private extension DetailView {
 				.frame(width: 25, height: 25)
 		}
 		.padding(.horizontal, 6)
+	}
+
+	var descriptionSection: some View {
+		VStack {
+			if let coinDescription = viewModel.coinDescription,
+			   !coinDescription.isEmpty {
+				VStack(alignment: .leading) {
+					Text(coinDescription)
+						.lineLimit(showFullDescription ? .max : 3)
+						.font(.callout)
+						.foregroundStyle(Color.theme.secondaryText)
+						.animation(showFullDescription ? .easeInOut : .none, value: showFullDescription)
+
+					Button(action: {
+						showFullDescription.toggle()
+					}, label: {
+						Text(showFullDescription ? "Less" : "Read more...")
+							.font(.caption)
+							.fontWeight(.bold)
+							.padding(.vertical, 4)
+					})
+					.tint(.blue)
+				}
+				.frame(maxWidth: .infinity, alignment: .leading)
+			}
+		}
+	}
+
+	var websiteSection: some View {
+		VStack(alignment: .leading, spacing: 20) {
+			if let websiteString = viewModel.websiteURL,
+			   let url = URL(string: websiteString) {
+				Link("Website", destination: url)
+			}
+
+			if let redditString = viewModel.redditURL,
+			   let url = URL(string: redditString) {
+				Link("Reddit", destination: url)
+			}
+		}
+		.tint(.blue)
+		.frame(maxWidth: .infinity, alignment: .leading)
+		.font(.headline)
 	}
 
 	func makeStatistics(

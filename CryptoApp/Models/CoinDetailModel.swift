@@ -7,6 +7,7 @@
 
 import Foundation
 
+// swiftlint:disable line_length
 // JSON Data
 /*
  URL: https://api.coingecko.com/api/v3/coins/bitcoin?localization=false&tickers=false&market_data=false&community_data=false&developer_data=false&sparkline=false
@@ -94,6 +95,7 @@ import Foundation
    "last_updated": "2021-05-11T06:47:11.426Z"
  }
  */
+// swiftlint:enable line_length
 
 struct CoinDetailModel: Codable {
 	let id, symbol, name: String?
@@ -123,6 +125,8 @@ struct Links: Codable {
 	}
 }
 
+// swiftlint:disable identifier_name
 struct Description: Codable {
 	let en: String?
 }
+// swiftlint:enable identifier_name

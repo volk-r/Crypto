@@ -37,7 +37,7 @@ struct ChartView: View {
 				.frame(height: 200)
 				.background(
 					chartBackground
-						.padding(.trailing,50)
+						.padding(.trailing, 50)
 				)
 				.overlay(
 					chartYAxis
