@@ -23,25 +23,44 @@ struct DetailView: View {
 
     var body: some View {
 		ScrollView {
-			VStack(spacing: 20) {
-				Text("Details")
-					.frame(height: 150)
-				makeStatistics(
-					title: "Overview",
-					statistics: viewModel.overviewStatistics
-				)
-				makeStatistics(
-					title: "Additional Details",
-					statistics: viewModel.additionalStatistics
-				)
+			VStack {
+				ChartView(coin: viewModel.coin)
+					.padding(.vertical)
+
+				VStack(spacing: 20) {
+					makeStatistics(
+						title: "Overview",
+						statistics: viewModel.overviewStatistics
+					)
+					makeStatistics(
+						title: "Additional Details",
+						statistics: viewModel.additionalStatistics
+					)
+				}
+				.padding()
 			}
-			.padding()
 		}
 		.navigationTitle(viewModel.coin.name)
+		.toolbar {
+			ToolbarItem(placement: .topBarTrailing) {
+				toolbarTrailingItem
+			}
+		}
     }
 }
 
 private extension DetailView {
+
+	var toolbarTrailingItem: some View {
+		HStack {
+			Text(viewModel.coin.symbol.uppercased())
+				.font(.headline)
+				.foregroundStyle(Color.theme.secondaryText)
+			CoinImageView(coin: viewModel.coin)
+				.frame(width: 25, height: 25)
+		}
+		.padding(.horizontal, 6)
+	}
 
 	func makeStatistics(
 		title: String,

@@ -17,9 +17,9 @@ enum AppNumberFormatters {
 		let formatter = NumberFormatter()
 		formatter.usesGroupingSeparator = true
 		formatter.numberStyle = .currency
-		formatter.locale = Locale(identifier: "en_US") // .current <- default value
-		formatter.currencyCode = "usd" // <- change currency
-		formatter.currencySymbol = "$" // <- change currency symbol
+		formatter.locale = AppContants.locale
+		formatter.currencyCode = AppContants.currencyCode
+		formatter.currencySymbol = AppContants.currencySymbol
 		formatter.minimumFractionDigits = 2
 		formatter.maximumFractionDigits = 2
 		return formatter
@@ -35,9 +35,9 @@ enum AppNumberFormatters {
 		let formatter = NumberFormatter()
 		formatter.usesGroupingSeparator = true
 		formatter.numberStyle = .currency
-		formatter.locale = Locale(identifier: "en_US") // .current <- default value
-		formatter.currencyCode = "usd" // <- change currency
-		formatter.currencySymbol = "$" // <- change currency symbol
+		formatter.locale = AppContants.locale
+		formatter.currencyCode = AppContants.currencyCode
+		formatter.currencySymbol = AppContants.currencySymbol
 		formatter.minimumFractionDigits = 2
 		formatter.maximumFractionDigits = 6
 		return formatter
