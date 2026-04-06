@@ -33,9 +33,17 @@ struct ChartView: View {
     var body: some View {
 		VStack {
 			chartView
+				.padding(.trailing, 50)
 				.frame(height: 200)
-				.background(chartBackground)
-				.overlay(chartYAxis.padding(.horizontal, 4), alignment: .leading)
+				.background(
+					chartBackground
+						.padding(.trailing,50)
+				)
+				.overlay(
+					chartYAxis
+						.padding(.horizontal, 4),
+					alignment: .trailing
+				)
 
 			shortDateLabels
 				.padding(.horizontal, 4)
