@@ -24,8 +24,7 @@ struct DetailView: View {
     var body: some View {
 		ScrollView {
 			VStack {
-				ChartView(coin: viewModel.coin)
-					.padding(.vertical)
+				ChartPickerView(coin: viewModel.coin)
 
 				VStack(spacing: 20) {
 					makeStatistics(
@@ -48,6 +47,8 @@ struct DetailView: View {
 		}
     }
 }
+
+// MARK: - Private Methods
 
 private extension DetailView {
 
