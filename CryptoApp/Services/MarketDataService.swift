@@ -23,6 +23,7 @@ final class MarketDataService: ObservableObject {
 
 		marketDataSubscription = NetworkManager.download(url: url)
 			.decode(type: GlobalData.self, decoder: JSONDecoder())
+			.receive(on: DispatchQueue.main)
 			.sink { completion in
 				NetworkManager.handleCompletion(completion: completion)
 			} receiveValue: { [weak self] returnedGlobalData in

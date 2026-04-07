@@ -19,9 +19,14 @@ struct SettingsView: View {
 		NavigationStack {
 			List {
 				descriptionSection
+					.listRowBackground(Color.theme.accent.opacity(0.1))
 				coingeckoSection
+					.listRowBackground(Color.theme.accent.opacity(0.1))
 				developerSection
+					.listRowBackground(Color.theme.accent.opacity(0.1))
 			}
+			.scrollContentBackground(.hidden)
+			.background(Color.theme.background)
 			.font(.headline)
 			.tint(.blue)
 			.listStyle(.grouped)
@@ -38,7 +43,7 @@ struct SettingsView: View {
 private extension SettingsView {
 
 	var descriptionSection: some View {
-		Section(header: Text("Application")) {
+		Section(header: Text("Application").foregroundStyle(Color.theme.accent)) {
 			VStack(alignment: .leading) {
 				Image(.Images.logo)
 					.resizable()
@@ -57,7 +62,7 @@ private extension SettingsView {
 	}
 
 	var coingeckoSection: some View {
-		Section(header: Text("Coingecko")) {
+		Section(header: Text("Coingecko").foregroundStyle(Color.theme.accent)) {
 			VStack(alignment: .leading) {
 				Image(.Images.coingecko)
 					.resizable()
@@ -76,7 +81,7 @@ private extension SettingsView {
 	}
 
 	var developerSection: some View {
-		Section(header: Text("Developer")) {
+		Section(header: Text("Developer").foregroundStyle(Color.theme.accent)) {
 			VStack(alignment: .leading) {
 				Image(.Images.volkR)
 					.resizable()

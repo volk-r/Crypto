@@ -40,6 +40,7 @@ final class CoinImageService: ObservableObject {
 
 		imageSubscription = NetworkManager.download(url: url)
 			.tryMap { (data) -> UIImage? in UIImage(data: data) }
+			.receive(on: DispatchQueue.main)
 			.sink { completion in
 				NetworkManager.handleCompletion(completion: completion)
 			} receiveValue: { [weak self] returnedImage in

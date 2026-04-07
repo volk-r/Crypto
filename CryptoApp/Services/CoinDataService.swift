@@ -23,6 +23,7 @@ final class CoinDataService: ObservableObject {
 
 		coinSubscription = NetworkManager.download(url: url)
 			.decode(type: [CoinModel].self, decoder: JSONDecoder())
+			.receive(on: DispatchQueue.main)
 			.sink { completion in
 				NetworkManager.handleCompletion(completion: completion)
 			} receiveValue: { [weak self] returnedCoins in

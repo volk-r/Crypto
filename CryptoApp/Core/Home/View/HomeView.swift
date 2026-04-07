@@ -36,10 +36,18 @@ struct HomeView: View {
 					)
 					.transition(.move(edge: .leading))
 				} else {
-					coinsList(
-						viewModel.portfolioCoins,
-						showHoldings: true
-					)
+					ZStack {
+						ZStack(alignment: .top) {
+							if viewModel.portfolioCoins.isEmpty && viewModel.searchText.isEmpty {
+								portfolioEmptyText
+							} else {
+								coinsList(
+									viewModel.portfolioCoins,
+									showHoldings: true
+								)
+							}
+						}
+					}
 					.transition(.move(edge: .trailing))
 				}
 
@@ -169,11 +177,21 @@ private extension HomeView {
 		.padding(.horizontal)
 	}
 
+	var portfolioEmptyText: some View {
+		Text("You haven't any coins to your portfolio yet! Click the + button to get started! 🧐")
+			.font(.callout)
+			.foregroundStyle(Color.theme.accent)
+			.fontWeight(.medium)
+			.multilineTextAlignment(.center)
+			.padding(50)
+	}
+
 	func coinsList(_ coins: [CoinModel], showHoldings: Bool) -> some View {
 		List(coins) { coin in
 			NavigationLink(value: coin) {
 				CoinRowView(coin: coin, showHoldingsColumn: showHoldings)
 			}
+			.listRowBackground(Color.clear)
 			.listRowInsets(EdgeInsets(top: 10, leading: 0, bottom: 10, trailing: 10))
 			.navigationLinkIndicatorVisibility(.hidden)
 		}
