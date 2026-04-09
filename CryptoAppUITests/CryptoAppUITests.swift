@@ -26,22 +26,14 @@ final class CryptoAppUITests: XCTestCase {
 		let myText = "BTC"
 		let searchBar = app.textFields[AppAccessibilityId.SearchBar.searchField]
 		XCTAssertTrue(searchBar.waitForExistence(timeout: 10), "SearchBar not found")
+		waitForLaunchScreenToDisappear()
 		searchBar.tap()
-		// Launch overlay animation can steal the first tap
-		if !app.keyboards.element.waitForExistence(timeout: 2) {
-			searchBar.tap()
-			XCTAssertTrue(app.keyboards.element.waitForExistence(timeout: 2))
-		}
 		searchBar.typeText(myText)
-
-		XCTAssertTrue(app.staticTexts[myText].waitForExistence(timeout: 2))
+		XCTAssertTrue(app.staticTexts[myText].exists, "Search text not found")
 	}
 
 	private func getInfoButton(element: String) -> XCUIElement {
-		let predicate = NSPredicate(
-			format: "identifier == %@",
-			element
-		)
+		let predicate = NSPredicate(format: "identifier == %@", element)
 		let infoButton = app
 			.descendants(matching: .any)
 			.matching(predicate)
@@ -51,7 +43,8 @@ final class CryptoAppUITests: XCTestCase {
 
 	private func waitForLaunchScreenToDisappear(timeout: TimeInterval = 5) {
 		let launchScreen = getInfoButton(element: AppAccessibilityId.LaunchScreen.id)
-		XCTAssertTrue(launchScreen.waitForNonExistence(timeout: timeout), "Launch screen did not disappear in time")
+		launchScreen.waitForNonExistence(timeout: timeout)
+		XCTAssertFalse(launchScreen.exists, "Launch screen did not disappear in time")
 	}
 
 	private func tapInfoButton() {
