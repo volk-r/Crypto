@@ -27,6 +27,7 @@ struct SearchBarView: View {
 				.keyboardType(.asciiCapable)
 				.autocorrectionDisabled()
 				.focused($isFocused)
+				.accessibilityIdentifier(AppAccessibilityId.SearchBar.searchField)
 
 			VStack(alignment: .trailing) {
 				Image(systemName: "xmark.circle.fill")

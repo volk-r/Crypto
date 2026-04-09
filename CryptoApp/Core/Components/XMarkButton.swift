@@ -18,6 +18,7 @@ struct XMarkButton: View {
 			Image(systemName: "xmark")
 				.font(.headline)
 		})
+		.accessibilityIdentifier(AppAccessibilityId.XMarkButton.id)
 	}
 }
 

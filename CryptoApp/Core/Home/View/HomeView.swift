@@ -71,6 +71,7 @@ private extension HomeView {
 						? showPortfolioView.toggle()
 					    : showSettingsView.toggle()
 				}
+				.accessibilityIdentifier(AppAccessibilityId.CircleButton.navBarLeft)
 				.background {
 					CircleButtonAnimationView(isAnimating: $showPortfolio)
 				}

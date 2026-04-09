@@ -60,6 +60,7 @@ struct LaunchView: View {
 				counter = lastIndex == counter ? 0 : counter + 1
 			}
 		}
+		.accessibilityIdentifier(AppAccessibilityId.LaunchScreen.id)
     }
 }
 
