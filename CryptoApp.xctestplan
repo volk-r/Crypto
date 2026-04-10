@@ -1,0 +1,38 @@
+{
+  "configurations" : [
+    {
+      "id" : "903090CF-DFBB-4CA6-B54E-88E5F8325823",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "performanceAntipatternCheckerEnabled" : true,
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:CryptoApp.xcodeproj",
+      "identifier" : "3C024A312F77D37100D9BF66",
+      "name" : "CryptoApp"
+    }
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:CryptoApp.xcodeproj",
+        "identifier" : "3CFAFCCC2F87A2AF00840D7A",
+        "name" : "CryptoAppUITests"
+      }
+    },
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:CryptoApp.xcodeproj",
+        "identifier" : "3CFAFF852F88AF5B00840D7A",
+        "name" : "CryptoAppUnitTests"
+      }
+    }
+  ],
+  "version" : 1
+}

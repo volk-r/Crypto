@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		3C048EB42F88DE2300533E51 /* SnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = 3C048EB32F88DE2300533E51 /* SnapshotTesting */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		3CFAFCD32F87A2AF00840D7A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -25,6 +29,7 @@
 
 /* Begin PBXFileReference section */
 		3C024A322F77D37100D9BF66 /* CryptoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CryptoApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3CFA215D2F88E3C300D92AA2 /* CryptoApp.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = CryptoApp.xctestplan; sourceTree = "<group>"; };
 		3CFAFCCD2F87A2AF00840D7A /* CryptoAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CryptoAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3CFAFF862F88AF5B00840D7A /* CryptoAppUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CryptoAppUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -87,6 +92,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3C048EB42F88DE2300533E51 /* SnapshotTesting in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -96,6 +102,7 @@
 		3C024A292F77D37100D9BF66 = {
 			isa = PBXGroup;
 			children = (
+				3CFA215D2F88E3C300D92AA2 /* CryptoApp.xctestplan */,
 				3C024A342F77D37100D9BF66 /* CryptoApp */,
 				3CFAFCCE2F87A2AF00840D7A /* CryptoAppUITests */,
 				3CFAFF872F88AF5B00840D7A /* CryptoAppUnitTests */,
@@ -188,6 +195,7 @@
 			);
 			name = CryptoAppUnitTests;
 			packageProductDependencies = (
+				3C048EB32F88DE2300533E51 /* SnapshotTesting */,
 			);
 			productName = CryptoAppUnitTests;
 			productReference = 3CFAFF862F88AF5B00840D7A /* CryptoAppUnitTests.xctest */;
@@ -227,6 +235,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				3C024E032F77E1E700D9BF66 /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */,
+				3C048EB22F88DE2300533E51 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 3C024A332F77D37100D9BF66 /* Products */;
@@ -645,6 +654,14 @@
 				minimumVersion = 0.63.2;
 			};
 		};
+		3C048EB22F88DE2300533E51 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/swift-snapshot-testing";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.19.2;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -652,6 +669,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 3C024E032F77E1E700D9BF66 /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */;
 			productName = "plugin:SwiftLintBuildToolPlugin";
+		};
+		3C048EB32F88DE2300533E51 /* SnapshotTesting */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3C048EB22F88DE2300533E51 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */;
+			productName = SnapshotTesting;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
