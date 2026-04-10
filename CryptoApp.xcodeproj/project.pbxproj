@@ -14,11 +14,19 @@
 			remoteGlobalIDString = 3C024A312F77D37100D9BF66;
 			remoteInfo = CryptoApp;
 		};
+		3CFAFF8A2F88AF5B00840D7A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3C024A2A2F77D37100D9BF66 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3C024A312F77D37100D9BF66;
+			remoteInfo = CryptoApp;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		3C024A322F77D37100D9BF66 /* CryptoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CryptoApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3CFAFCCD2F87A2AF00840D7A /* CryptoAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CryptoAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3CFAFF862F88AF5B00840D7A /* CryptoAppUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CryptoAppUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -53,6 +61,11 @@
 			path = CryptoAppUITests;
 			sourceTree = "<group>";
 		};
+		3CFAFF872F88AF5B00840D7A /* CryptoAppUnitTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = CryptoAppUnitTests;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +83,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		3CFAFF832F88AF5B00840D7A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -78,6 +98,7 @@
 			children = (
 				3C024A342F77D37100D9BF66 /* CryptoApp */,
 				3CFAFCCE2F87A2AF00840D7A /* CryptoAppUITests */,
+				3CFAFF872F88AF5B00840D7A /* CryptoAppUnitTests */,
 				3C024E002F77E1A300D9BF66 /* Frameworks */,
 				3C024A332F77D37100D9BF66 /* Products */,
 			);
@@ -88,6 +109,7 @@
 			children = (
 				3C024A322F77D37100D9BF66 /* CryptoApp.app */,
 				3CFAFCCD2F87A2AF00840D7A /* CryptoAppUITests.xctest */,
+				3CFAFF862F88AF5B00840D7A /* CryptoAppUnitTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -148,6 +170,29 @@
 			productReference = 3CFAFCCD2F87A2AF00840D7A /* CryptoAppUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		3CFAFF852F88AF5B00840D7A /* CryptoAppUnitTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3CFAFF8C2F88AF5B00840D7A /* Build configuration list for PBXNativeTarget "CryptoAppUnitTests" */;
+			buildPhases = (
+				3CFAFF822F88AF5B00840D7A /* Sources */,
+				3CFAFF832F88AF5B00840D7A /* Frameworks */,
+				3CFAFF842F88AF5B00840D7A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3CFAFF8B2F88AF5B00840D7A /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				3CFAFF872F88AF5B00840D7A /* CryptoAppUnitTests */,
+			);
+			name = CryptoAppUnitTests;
+			packageProductDependencies = (
+			);
+			productName = CryptoAppUnitTests;
+			productReference = 3CFAFF862F88AF5B00840D7A /* CryptoAppUnitTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -162,6 +207,10 @@
 						CreatedOnToolsVersion = 26.4;
 					};
 					3CFAFCCC2F87A2AF00840D7A = {
+						CreatedOnToolsVersion = 26.4;
+						TestTargetID = 3C024A312F77D37100D9BF66;
+					};
+					3CFAFF852F88AF5B00840D7A = {
 						CreatedOnToolsVersion = 26.4;
 						TestTargetID = 3C024A312F77D37100D9BF66;
 					};
@@ -186,6 +235,7 @@
 			targets = (
 				3C024A312F77D37100D9BF66 /* CryptoApp */,
 				3CFAFCCC2F87A2AF00840D7A /* CryptoAppUITests */,
+				3CFAFF852F88AF5B00840D7A /* CryptoAppUnitTests */,
 			);
 		};
 /* End PBXProject section */
@@ -199,6 +249,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		3CFAFCCB2F87A2AF00840D7A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3CFAFF842F88AF5B00840D7A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -222,6 +279,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		3CFAFF822F88AF5B00840D7A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -233,6 +297,11 @@
 			isa = PBXTargetDependency;
 			target = 3C024A312F77D37100D9BF66 /* CryptoApp */;
 			targetProxy = 3CFAFCD32F87A2AF00840D7A /* PBXContainerItemProxy */;
+		};
+		3CFAFF8B2F88AF5B00840D7A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3C024A312F77D37100D9BF66 /* CryptoApp */;
+			targetProxy = 3CFAFF8A2F88AF5B00840D7A /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -484,6 +553,48 @@
 			};
 			name = Release;
 		};
+		3CFAFF8D2F88AF5B00840D7A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3T4L6EX6TF;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "volk-r.CryptoAppUnitTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CryptoApp.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/CryptoApp";
+			};
+			name = Debug;
+		};
+		3CFAFF8E2F88AF5B00840D7A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3T4L6EX6TF;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "volk-r.CryptoAppUnitTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CryptoApp.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/CryptoApp";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -510,6 +621,15 @@
 			buildConfigurations = (
 				3CFAFCD62F87A2AF00840D7A /* Debug */,
 				3CFAFCD72F87A2AF00840D7A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3CFAFF8C2F88AF5B00840D7A /* Build configuration list for PBXNativeTarget "CryptoAppUnitTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3CFAFF8D2F88AF5B00840D7A /* Debug */,
+				3CFAFF8E2F88AF5B00840D7A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
