@@ -53,7 +53,9 @@ struct LaunchView: View {
 			if lastIndex == counter {
 				loops += 1
 				if loops >= 2 {
-					showLaunchView = false
+					withAnimation {
+						showLaunchView = false
+					}
 				}
 			}
 			withAnimation(.easeIn) {
